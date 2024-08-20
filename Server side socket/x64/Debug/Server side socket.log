@@ -1,0 +1,4 @@
+﻿  server.c
+C:\Users\user\Desktop\Server side socket\Server side socket\server.c(71,30): warning C4267: функция: преобразование из "size_t" в "int"; возможна потеря данных
+C:\Users\user\Desktop\Server side socket\Server side socket\server.c(74,31): warning C4267: функция: преобразование из "size_t" в "int"; возможна потеря данных
+  Server side socket.vcxproj -> C:\Users\user\Desktop\Server side socket\x64\Debug\Server side socket.exe

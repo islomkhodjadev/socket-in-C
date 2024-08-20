@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Animated Example</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            background-color: #fff;
+            border: 2px solid #ddd;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+
+        .box {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background-color: #3498db;
+            animation: moveBox 4s ease-in-out infinite;
+        }
+
+        @keyframes moveBox {
+            0% {
+                transform: translate(0, 0) rotate(0deg);
+                background-color: #3498db;
+            }
+
+            25% {
+                transform: translate(250px, 0) rotate(90deg);
+                background-color: #e74c3c;
+            }
+
+            50% {
+                transform: translate(250px, 250px) rotate(180deg);
+                background-color: #2ecc71;
+            }
+
+            75% {
+                transform: translate(0, 250px) rotate(270deg);
+                background-color: #f39c12;
+            }
+
+            100% {
+                transform: translate(0, 0) rotate(360deg);
+                background-color: #3498db;
+            }
+        }
+
+        .controls {
+            display: flex;
+            gap: 10px;
+        }
+
+            .controls button {
+                padding: 10px 20px;
+                border: none;
+                border-radius: 5px;
+                background-color: #3498db;
+                color: #fff;
+                cursor: pointer;
+                font-size: 16px;
+                transition: background-color 0.3s ease;
+            }
+
+                .controls button:hover {
+                    background-color: #2980b9;
+                }
+
+        .box:hover {
+            transform: scale(1.2) rotate(360deg);
+            background-color: #8e44ad;
+            transition: transform 0.5s ease, background-color 0.5s ease;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="box"></div>
+    </div>
+    <div class="controls">
+        <button id="speedUp">Speed Up</button>
+        <button id="slowDown">Slow Down</button>
+        <button id="reverse">Reverse</button>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const box = document.querySelector('.box');
+            const speedUpButton = document.getElementById('speedUp');
+            const slowDownButton = document.getElementById('slowDown');
+            const reverseButton = document.getElementById('reverse');
+
+            let speed = 4; // Base speed in seconds
+            let reverse = false;
+
+            const updateAnimationDuration = () => {
+                box.style.animationDuration = `${speed}s`;
+                if (reverse) {
+                    box.style.animationDirection = 'reverse';
+                } else {
+                    box.style.animationDirection = 'normal';
+                }
+            };
+
+            speedUpButton.addEventListener('click', () => {
+                speed = Math.max(1, speed - 1); // Speed up, minimum 1 second
+                updateAnimationDuration();
+            });
+
+            slowDownButton.addEventListener('click', () => {
+                speed += 1; // Slow down
+                updateAnimationDuration();
+            });
+
+            reverseButton.addEventListener('click', () => {
+                reverse = !reverse;
+                updateAnimationDuration();
+            });
+        });
+    </script>
+</body>
+</html>
